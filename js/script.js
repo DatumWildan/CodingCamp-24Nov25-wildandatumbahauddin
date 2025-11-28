@@ -1,58 +1,99 @@
-/// Temprorary storage for todo items
 let todos = [];
 
+// Validate form input
 function validateForm() {
-    /// Get input values
-    const todo = document.getElementById('todo-input').value;
-    const date = document.getElementById('todo-date').value;
+    const task = document.getElementById('todo-input').value;
+    const date = document.getElementById('date-input').value;
 
-    // Validate input todo and date
-    if (todo === '' || date === '') {
-        alert('Please fill in both the todo item and the due date.');
-    } else {
-        addTodo(todo, date);
-
-        // Clear input fields after adding todo
-        document.getElementById('todo-input').value = '';
-        document.getElementById('todo-date').value = '';
+    if (task === '' || date === '') {
+        alert('Please fill in both fields.');
+        return;
     }
+
+    addTodo(task, date);
+
+    document.getElementById('todo-input').value = '';
+    document.getElementById('date-input').value = '';
 }
 
-/// Function to add a new todo item
-function addTodo(todo, date) {
-    /// Create a new todo item object
+// Add new todo
+function addTodo(task, date) {
     const todoItem = {
-        task: todo,
+        task: task,
         date: date,
-    }
+        completed: false,
+    };
 
-    /// Add the new todo item to the todos array
     todos.push(todoItem);
     renderTodos();
 }
 
-/// Function to render todo items to the DOM
-function renderTodos() {
+// Render todos to UI
+function renderTodos(filterType = "all") {
     const todoList = document.getElementById('todo-list');
-
-    // Clear existing list
     todoList.innerHTML = '';
 
-    // Render each todo item
-    todos.forEach((todo, _) => {
+    let filtered = todos;
+
+    if (filterType === "completed") {
+        filtered = todos.filter(t => t.completed === true);
+    } else if (filterType === "uncompleted") {
+        filtered = todos.filter(t => t.completed === false);
+    }
+
+    if (filtered.length === 0) {
+        todoList.innerHTML = `<li>No todos available</li>`;
+        return;
+    }
+
+    filtered.forEach((todo, index) => {
         todoList.innerHTML += `
         <li>
-            <p class="text-2xl">${todo.task} <span class="text-sm text-gray-500">(${todo.date})</span></p>
-            <hr />
+            <p style="font-size: 18px; ${todo.completed ? "text-decoration: line-through; color: gray;" : ""}">
+                ${todo.task}
+                <span style="font-size: 12px; color: gray;">(${todo.date})</span>
+            </p>
+
+            <div>
+                <button onclick="toggleComplete(${index})">Complete</button>
+                <button onclick="deleteTodo(${index})">Delete</button>
+            </div>
         </li>`;
     });
 }
 
-/// Function to clear all todo items
+// Toggle complete
+function toggleComplete(index) {
+    todos[index].completed = !todos[index].completed;
+    renderTodos(document.getElementById('filter-todo').value);
+}
+
+// Delete
+function deleteTodo(index) {
+    todos.splice(index, 1);
+    renderTodos(document.getElementById('filter-todo').value);
+}
+
+// Clear all
 function clearTodos() {
     todos = [];
     renderTodos();
 }
 
-/// Function to filter todo items by date
-function filter() { }
+// Filter dropdown
+function filterTodos() {
+    const filterType = document.getElementById('filter-todo').value;
+    renderTodos(filterType);
+}
+
+
+// EVENT LISTENERS
+
+document.getElementById("todo-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    validateForm();
+});
+
+document.getElementById("filter-todo").addEventListener("change", filterTodos);
+
+document.getElementById("clear-button").addEventListener("click", clearTodos);

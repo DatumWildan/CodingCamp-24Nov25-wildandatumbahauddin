@@ -1,70 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List - Yama Roni</title>
-
-    <!-- Link CSS -->
+    <title>Simple to-Do App</title>
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-
 <body>
     <!-- Header Section -->
     <header>
-        <h1 class="text-2xl font-bold">My Todo List</h1>
+        <h1>To-Do List</h1>
     </header>
-
-    <!-- Main Content -->
-    <main>
+    <!-- Main Section -->
+     <main>
         <!-- Form Section -->
-        <section class="py-4">
-            <form>
+         <section id="form-section">
+            <h2>Add New Task</h2>
+            <form id="todo-form">
                 <!-- Todo Input -->
-                <input type="text" class="border p-2 rounded" id="todo-input" placeholder="Enter a new todo item">
+                 <input 
+                 type="text"
+                 id="todo-input"
+                 placeholder="Enter your task..."
+                 required
+                 >
+                 <!-- Data Input -->
+                <input 
+                type="date"
+                id="date-input"
+                required
+                >
 
-                <!-- Date Input -->
-                <input type="date" class="border p-2 rounded" id="todo-date" placeholder="Enter due date">
+                <!-- Add Button -->
+                <button type="submit">Add Todo</button>
             </form>
+         </section>
+         <!-- Action Section -->
+         <section id="action-section">
+            <button id="clear-button">Clear All</button>
 
-            <!-- Add Button -->
-            <button class="border rounded p-2 bg-green-500 text-white" onclick="validateForm();" type="button">Add
-                Todo</button>
-        </section>
+            <!-- Filter Dropdown -->
+             <select id="filter-todo">
+                <option value="all">Show All</option>
+                <option value="completed">Completed</option>
+                <option value="uncompleted">Uncompleted</option>
+             </select>
+         </section>
 
-        <!-- Action Section -->
-        <section class="flex py-2 justify-between">
-            <!-- Clear All Button -->
-            <button class="border rounded p-2 bg-red-500 text-white" onclick="clearTodos();">Clear All Todos</button>
+         <!-- Todo List Section -->
+         <section id="todo-section">
+            <h2>List of Todos</h2>
+            <ul id="todo-list">
+                <!-- Generated dynamically -->
+                 <li>No todos available</li>
 
-            <!-- Filter Options -->
-            <button class="border rounded p-2 bg-blue-500 text-white">Filter Todos</button>
-        </section>
-
-        <!-- Todo List Section -->
-        <section class="py-2">
-            <header>
-                <h1 class="text-2xl font-semibold">List of Todos</h1>
-            </header>
-
-            <ul class="pt-2" id="todo-list">
-                <!-- Todo items will be dynamically added here -->
-                <li>No todos available</li>
             </ul>
-        </section>
-    </main>
+         </section>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Yama Roni. All rights reserved.</p>
-    </footer>
+     </main>
+     <!-- Footer Section -->
+     <footer>
+        <p>&copy; 2025 TO-Do App. All rights reserved</p>
+     </footer>
 
-    <!-- Javascript External -->
-    <script src="js/script.js"></script>
+     <!-- External Script -->
+     <script src="js/script.js"></script>
 </body>
-
 </html>

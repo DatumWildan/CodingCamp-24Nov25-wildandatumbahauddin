@@ -1,5 +1,132 @@
+/* Reset layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global */
 body {
-    min-height: 100vh;
-    align-content: center;
-    justify-items: center;
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* Main */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Form section */
+#form-section {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+#form-section h2 {
+    margin-bottom: 15px;
+}
+
+#todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#todo-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+#todo-form button {
+    padding: 12px;
+    background: #4caf50;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#todo-form button:hover {
+    background: #45a049;
+}
+
+/* Action section */
+#action-section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+#action-section button,
+#action-section select {
+    padding: 10px 14px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #bbb;
+    cursor: pointer;
+}
+
+#clear-button {
+    background: #e53935;
+    color: white;
+    border: none;
+}
+
+#clear-button:hover {
+    background: #c62828;
+}
+
+/* Todo list section */
+#todo-section {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#todo-section h2 {
+    margin-bottom: 15px;
+}
+
+#todo-list {
+    list-style: none;
+}
+
+#todo-list li {
+    background: #f1f1f1;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    opacity: 0.7;
 }
